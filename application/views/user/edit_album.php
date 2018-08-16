@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Category
-        <small>Category panel</small>
+        Album
+        <small>Album panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="breadcrumb-item active">Category</li>
+        <li class="breadcrumb-item"><a href="<?= base_url('user') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="breadcrumb-item active">Album</li>
       </ol>
     </section>
     <section class="content">

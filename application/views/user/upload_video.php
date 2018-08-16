@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Post
-        <small>Post panel</small>
+        Video Gallery
+        <small>Video panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="breadcrumb-item active">Post</li>
+        <li class="breadcrumb-item"><a href="<?= base_url('user') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="breadcrumb-item active">Video Gallery</li>
       </ol>
     </section>
     <?php
@@ -24,7 +24,7 @@
           <!-- /.box -->
            <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Create New Gallery</h3>
+              <h3 class="box-title">Create New Video Gallery</h3>
             </div>
             <!-- /.box-header -->
              
@@ -46,13 +46,14 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for=""><b>Create Album</b></label>
+                    <label for=""><b>Create Video Album</b></label>
                     <input type="text" class="form-control" placeholder="Enter album Name" name="album_name">
                   
                 </div>
                 <div class="form-group">
                   <label for="">Upload Video</label>
                    <input type="file" name="files[]" multiple/>
+                    <p>* Allowed file type are : avi,flv,wmv,mp3,mp4 </p>
                 </div>
                 <input type="hidden" name="user_id" value="<?=  $user_data['user_id']?>" />
                 <input type="hidden" name="file_type" value="video"/>

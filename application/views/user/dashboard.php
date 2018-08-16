@@ -13,86 +13,10 @@
       </ol>
     </section>
 
-    <!-- Main content -->
+
+
+
     <section class="content">
-		<div class="row">
-	      
-        <div class="col-xl-3 col-md-6 col">
-          <div class="info-box">
-            <span class="info-box-icon bg-primary"><i class="ion ion-star"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-number">44</span>
-              <span class="info-box-text">In Progress</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <div class="col-xl-3 col-md-6 col">
-            
-          <div class="info-box">
-            <span class="info-box-icon bg-info"><i class="fa fa-check"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-number">22</span>
-              <span class="info-box-text">Complete Booking</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-       <div class="col-xl-3 col-md-6 col">
-          <div class="info-box">
-            <span class="info-box-icon bg-danger"><i class="ion ion-reply"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-number">22</span>
-              <span class="info-box-text">Waiting for Confirm</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
-
-       <div class="col-xl-3 col-md-6 col">
-          <div class="info-box">
-            <span class="info-box-icon bg-info"><i class="fa fa-ban"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-number">111</span>
-              <span class="info-box-text">Cancel Booking</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-         
-        <!-- /.col -->
-      </div> 
-      <div class="row">
-          <div class="col-md-12 col-lg-12">
-         
-          <!-- /.box -->
-        </div>
-      </div> 
-     
-              
-      <!-- /.row -->
-     
-      
-	</section>
-
-
-
-
-<section class="content">
     <div class="row">
 
         <div class="col-xl-3 col-md-6 col">

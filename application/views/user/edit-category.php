@@ -8,8 +8,8 @@
         <small>Category panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="breadcrumb-item active">Notice</li>
+        <li class="breadcrumb-item"><a href="<?= base_url('user') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="breadcrumb-item active">Category</li>
       </ol>
     </section>
 <section class="content">
@@ -33,7 +33,6 @@
              <?php
                 $attributes = array('class' => 'formelement','method'=>'post');
                 echo form_open('user/update_category', $attributes);
-                
             ?>
               <div class="box-body">
                 <div class="form-group">

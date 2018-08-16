@@ -38,7 +38,7 @@
                      echo '<div class="alert alert-info">'.$errorr.'</div>';
                 }
                 $attributes = array('class' => 'formelement','method'=>'post');
-                echo form_open('user/update_post', $attributes);
+                echo form_open_multipart('user/update_post', $attributes);
                 
             ?>  
               <div class="box-body">
@@ -70,13 +70,7 @@
                   <label for="">Upload Image</label>
                   <input type="file" class="form-control" name="post_img" id="post_img" />
                 </div>
-                <?php 
-                if($post['post_img']){ ?>
-                <div class="form-group">
-                    <img src="<?= base_url('blogimage/'.$post['post_img'])?>" />
-                </div>
-                <?php }
-                ?>
+                
                 <input type="hidden" name="post_id" value="<?=  $post['id']?>" />
                 
               </div>

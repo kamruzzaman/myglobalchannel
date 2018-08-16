@@ -132,6 +132,16 @@ class Blog_model extends CI_Model
         }
         return $enums;
     }
+     public function insert($tb,$data)
+        {
+           
+
+                $this->db->insert($tb, $data);
+                
+                return $this->db->insert_id();
+                
+        }
+
 
 }
 ?>

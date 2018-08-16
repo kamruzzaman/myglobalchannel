@@ -11,12 +11,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Post
-        <small>Post panel</small>
+        Blog
+        <small>Blog panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="breadcrumb-item active">Post</li>
+        <li class="breadcrumb-item"><a href="<?= base_url('user') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="breadcrumb-item active">Blog</li>
       </ol>
     </section>
     <?php
@@ -34,13 +34,13 @@
                   
                     <?php  if($cat['id'] ==  $post['category_id']){ $cat_name =  $cat['category_name']; }?></option>
                   <?php } ?>
-                 <img src="<?= base_url('blogimage/').$post['post_img']?>" class="blogimgs"/>
+                 <img src="<?= base_url('blogimage/').$post['post_img']?>" class="img-fluid"/>
                  <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><strong>Post  title: </strong><?php echo $post['post_title']; ?> </li>
-                  <li class="list-group-item"><strong>Post  subtitle: </strong><?php echo $post['post_subtitle']; ?></li>
-                  <li class="list-group-item"><strong>Post Description: </strong> <?php echo $post['post_desc']; ?></li>
-                  <li class="list-group-item"><strong>Post category: </strong><?= $cat_name ?></li>
-                  <li class="list-group-item"><strong>Post Status: </strong><?php echo $post['status']; ?></li>
+                  <li class="list-group-item"><strong>Blog  title: </strong><?php echo $post['post_title']; ?> </li>
+                  <li class="list-group-item"><strong>Blog  subtitle: </strong><?php echo $post['post_subtitle']; ?></li>
+                  <li class="list-group-item"><strong>Blog Description: </strong> <?php echo $post['post_desc']; ?></li>
+                  <li class="list-group-item"><strong>Blog category: </strong><?= $cat_name ?></li>
+                  <li class="list-group-item"><strong>Blog Status: </strong><?php echo $post['status']; ?></li>
                 </ul>
                 
               </div>

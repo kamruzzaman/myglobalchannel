@@ -5,10 +5,10 @@
     <section class="content-header">
       <h1>
         Event
-        <small>Control panel</small>
+        <small>Event panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('user') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="breadcrumb-item active">Event</li>
       </ol>
     </section>

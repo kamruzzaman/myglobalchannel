@@ -268,10 +268,10 @@ a.pagination-link{
         border: 2px solid #ccc;
         width: 120px;
     }
-      .btn_likes {float:left; padding: 0px 5px;cursor:pointer;width: 143px;
-        height: 38px;overflow:hidden;}
-            .btn_likes img{max-width: 100%;width: 20px;height:20px;}
-            .btn_likes button[type="button"]{border:0;cursor:pointer;}
-            .like {background:url('../img/like.png')}
-            .unlike {background:url('../img/unlike.png')}
-            .label-likes {font-size:12px;color:#2F529B;height:20px;}
+    .btn_likes {float:left; padding: 0px 5px;cursor:pointer;width: 143px;
+height: 38px;overflow:hidden;}
+    .btn_likes img{max-width: 100%;width: 20px;height:20px;}
+    .btn_likes button[type="button"]{border:0;cursor:pointer;}
+    .like {background:url('../img/like.png')}
+    .unlike {background:url('../img/unlike.png')}
+    .label-likes {font-size:12px;color:#2F529B;height:20px;}

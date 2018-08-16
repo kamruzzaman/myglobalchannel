@@ -4,7 +4,7 @@
 <!--    <div class="pull-right d-none d-sm-inline-block">-->
 <!--       -->
 <!--    </div>-->
-<!--	  &copy; --><?php //echo date('Y');?><!-- <a href="#">Yolo Rides London </a>. All Rights Reserved.-->
+<!--      &copy; --><?php //echo date('Y');?><!-- <a href="#">Yolo Rides London </a>. All Rights Reserved.-->
 <!--  </footer>-->
 <footer class="w3-container  ">
     <div class=" w3-center w3-padding-24">Powered by <a href="http://brainlabs.com.bd/" title="W3.CSS" target="_blank" class="w3-hover-opacity">Brainlabs</a></div>
@@ -18,85 +18,117 @@
 
 </div>
 <!-- ./wrapper -->
-  	
-	 <script>
-	     var base_url = '<?=base_url()?>';
-	      var csrf_name = '<?=$this->security->get_csrf_token_name()?>';
-	 </script>
-	  
-	<!-- jQuery 3 -->
-	<script src="<?=base_url()?>assets/js/jquery.js"></script>
-	
-	<!-- jQuery UI 1.11.4 -->
-	<script src="<?=base_url()?>assets/js/jquery-ui.js"></script>
-	
-	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-	<script>
-	  $.widget.bridge('uibutton', $.ui.button);
-	</script>
-	
-	<!-- popper -->
-	<script src="<?=base_url()?>assets/js/popper.min.js"></script>
-	
-	<!-- Bootstrap 4.0-->
-	<script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>	
+    
+     <script>
+         var base_url = '<?=base_url()?>';
+          var csrf_name = '<?=$this->security->get_csrf_token_name()?>';
+     </script>
+      
+    <!-- jQuery 3 -->
+    <script src="<?=base_url()?>assets/js/jquery.js"></script>
+    
+    <!-- jQuery UI 1.11.4 -->
+    <script src="<?=base_url()?>assets/js/jquery-ui.js"></script>
+    
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    
+    <!-- popper -->
+    <script src="<?=base_url()?>assets/js/popper.min.js"></script>
+    
+    <!-- Bootstrap 4.0-->
+    <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>   
 
-	
-	 <script src="<?=base_url()?>assets/js/jquery.dataTables.min.js"></script>
+    
+     <script src="<?=base_url()?>assets/js/jquery.dataTables.min.js"></script>
 
 
-	<script src="<?=base_url()?>assets/js/jquery.slimscroll.js"></script>
-<!--		  <script src="--><?//=base_url()?><!--assets/js/sweetalert.min.js"></script>-->
+    <script src="<?=base_url()?>assets/js/jquery.slimscroll.js"></script>
+<!--          <script src="--><?//=base_url()?><!--assets/js/sweetalert.min.js"></script>-->
 <!--    <script src="--><?//=base_url()?><!--assets/js/jquery.sweet-alert.custom.js"></script>-->
 <!--    <script src="--><?//=base_url()?><!--assets/js/sweetalert-dev.js"></script>-->
-	<!-- FastClick -->
-<!--	<script src="--><?//=base_url()?><!--assets/js/fastclick.js"></script>-->
+    <!-- FastClick -->
+<!--    <script src="--><?//=base_url()?><!--assets/js/fastclick.js"></script>-->
 
 
     <!-- fullCalendar -->
-	<script src="<?= base_url()?>assets/js/moment.js"></script>
-	<script src="<?= base_url()?>vendor/fullcalendar/fullcalendar.min.js"></script>
-	<script src="<?= base_url()?>assets/datepicker/js/bootstrap-datetimepicker.js"></script>
-	<script src="<?= base_url()?>assets/datepicker/js/locales/bootstrap-datetimepicker.ua.js"></script>
-	
-	<!-- MinimalPro Admin for calendar -->
-	<!--<script src="<?= base_url()?>assets/js/calendar.js"></script>-->
-	<!-- MinimalPro Admin App -->
-	<script src="<?=base_url()?>assets/js/template.js"></script>
-	<script>
-	var notice_tbl = '';
-	var slider_tbl = '';
-	var rotor_tbl = '';
-	var category_tbl = '';
-	var post_tbl = '';
-	var album_tbl = '';
-	var date_last_clicked = null;
-
-	    $(document).ready(function(){
-	        notice_tbl = $('#notice_tbl').DataTable({
+    <script src="<?= base_url()?>assets/js/moment.js"></script>
+    <script src="<?= base_url()?>vendor/fullcalendar/fullcalendar.min.js"></script>
+    <script src="<?= base_url()?>assets/datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="<?= base_url()?>assets/datepicker/js/locales/bootstrap-datetimepicker.ua.js"></script>
+    <script src="<?= base_url()?>assets/datepicker/js/bs-datepicker.js"></script>
+    
+    <!-- MinimalPro Admin for calendar -->
+    <!--<script src="<?= base_url()?>assets/js/calendar.js"></script>-->
+    <!-- MinimalPro Admin App -->
+    <script src="<?=base_url()?>assets/js/template.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#created_date').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        })
+    </script>
+    <script>
+    var notice_tbl = '';
+    var slider_tbl = '';
+    var rotor_tbl = '';
+    var category_tbl = '';
+    var post_tbl = '';
+    var album_tbl = '';
+    var imglist_tbl = '';
+    var audiolist_tbl = '';
+    var videolist_tbl = '';
+    var date_last_clicked = null;
+    var evt=0;
+        $(document).ready(function(){
+            notice_tbl = $('#notice_tbl').DataTable({
                 'ajax' : base_url+'user/get_all_notice',
-        		'order': [[ 3, 'desc' ]]
+                'order': [[ 3, 'desc' ]]
             });
             slider_tbl = $('#slider_tbl').DataTable({
                 'ajax' : base_url+'user/get_all_slider',
-        		'order': [[ 3, 'desc' ]]
+                'order': [[ 3, 'desc' ]]
             });
             rotor_tbl = $('#rotor_tbl').DataTable({
                 'ajax' : base_url+'user/get_all_rotor',
-        		'order': [[ 3, 'desc' ]]
+                'order': [[ 3, 'desc' ]]
             });
             category_tbl = $('#category_tbl').DataTable({
                 'ajax' : base_url+'user/get_all_category',
-        		'order': [[ 3, 'desc' ]]
+                'order': [[ 3, 'desc' ]]
             });
             post_tbl = $('#post_tbl').DataTable({
-                'ajax' : base_url+'user/get_all_post',
-        		'order': [[ 3, 'desc' ]]
+                'ajax' : base_url+'user/get_all_blog',
+                'order': [[ 3, 'desc' ]]
             });
             album_tbl = $('#album_tbl').DataTable({
                 'ajax' : base_url+'user/get_album_list',
                 'order':[[3, 'desc']]
             });
+            
+            imglist_tbl = $('#albmu_list').DataTable({
+                'ajax' : base_url+'user/imglist_gallery?a_id='+evt,
+                
+            });
+            audiolist_tbl = $('#audio_list').DataTable({
+                'ajax' : base_url+'user/audiolist_gallery?a_id='+evt,
+                
+            });
+            videolist_tbl = $('#video_list').DataTable({
+                'ajax' : base_url+'user/videolist_gallery?a_id='+evt,
+                
+            });
+            
+            // $("#al_bum_name").on('change', function() {
+            //     if ($(this).val() > 0){
+            //       var evt = $(this).val();
+            //         imglist_tbl.ajax.url('dashboard/report?month='+month);
+            //         imglist_tbl.ajax.reload();
+            //     } 
+            // });
             $('#calendar').fullCalendar({
                  header: {
                     left: 'prev,next today',
@@ -157,93 +189,140 @@
              $('.form_date').datetimepicker({
                weekStart: 1,
                 todayBtn:  1,
-        		autoclose: 1,
-        		todayHighlight: 1,
-        		startView: 2,
-        		forceParse: 0,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
                 showMeridian: 1
             });
-	    });
-	    function deleteNotice(evt){
-        	var id = $(evt).data('id');
-        	$.ajax({
-        		url: base_url+"user/delete_Notice/"+id,
-        		success:function(response){
-        			
-        			notice_tbl.ajax.reload();
-        		}
-        	});
+        });
+        function deleteNotice(evt){
+            var id = $(evt).data('id');
+            $.ajax({
+                url: base_url+"user/delete_Notice/"+id,
+                success:function(response){
+                    
+                    notice_tbl.ajax.reload();
+                }
+            });
         
         }
         function deleteSlider(evt){
-        	var id = $(evt).data('id');
-        	$.ajax({
-        		url: base_url+"user/delete_Slider/"+id,
-        		success:function(response){
-        			console.log(response);
-        			slider_tbl.ajax.reload();
-        		}
-        	});
+            var id = $(evt).data('id');
+            $.ajax({
+                url: base_url+"user/delete_Slider/"+id,
+                success:function(response){
+                    console.log(response);
+                    slider_tbl.ajax.reload();
+                }
+            });
         
         }
         function deleteRotor(evt){
-        	var id = $(evt).data('id');
-        	$.ajax({
-        		url: base_url+"user/delete_rotor/"+id,
-        		success:function(response){
-        			console.log(response);
-        			rotor_tbl.ajax.reload();
-        		}
-        	});
+            var id = $(evt).data('id');
+            $.ajax({
+                url: base_url+"user/delete_rotor/"+id,
+                success:function(response){
+                    console.log(response);
+                    rotor_tbl.ajax.reload();
+                }
+            });
         
         }
         function deleteCategory(evt){
             var id = $(evt).data('id');
             $.ajax({
-        		url: base_url+"user/delete_category/"+id,
-        		success:function(response){
-        			console.log(response);
-        			category_tbl.ajax.reload();
-        		}
-        	});
+                url: base_url+"user/delete_category/"+id,
+                success:function(response){
+                    console.log(response);
+                    category_tbl.ajax.reload();
+                }
+            });
         }
         function deletePost(evt){
             var id = $(evt).data('id');
             $.ajax({
-        		url: base_url+"user/delete_post/"+id,
-        		success:function(response){
-        			console.log(response);
-        			post_tbl.ajax.reload();
-        		}
-        	});
+                url: base_url+"user/delete_blog/"+id,
+                success:function(response){
+                    console.log(response);
+                    post_tbl.ajax.reload();
+                }
+            });
+        }
+         function deleteImage(evt){
+            var id = $(evt).data('id');
+            $.ajax({
+                url: base_url+"user/delete_Img/"+id,
+                success:function(response){
+                    console.log(response);
+                    imglist_tbl.ajax.reload();
+                }
+            });
+        }
+         function deleteAudio(evt){
+            var id = $(evt).data('id');
+            $.ajax({
+                url: base_url+"user/delete_Audio/"+id,
+                success:function(response){
+                    console.log(response);
+                    audiolist_tbl.ajax.reload();
+                }
+            });
+        } function deleteVideo(evt){
+            var id = $(evt).data('id');
+            $.ajax({
+                url: base_url+"user/delete_Video/"+id,
+                success:function(response){
+                    console.log(response);
+                    videolist_tbl.ajax.reload();
+                }
+            });
         }
         function deleteAlbum(evt){
             var id = $(evt).data('id');
             $.ajax({
-        		url: base_url+"user/delete_album/"+id,
-        		success:function(response){
-        			console.log(response);
-        			album_tbl.ajax.reload();
-        		}
-        	});
+                url: base_url+"user/delete_album/"+id,
+                success:function(response){
+                    console.log(response);
+                    album_tbl.ajax.reload();
+                }
+            });
         }
         function changeStatus(evt){
 
-        	var status = $(evt).val();
-        	var id = $(evt).data('id');
-        	
-        	$.ajax({
-        		url: base_url+"user/editPostStatus",
-        		data: {id: id, status: status},
-        		success: function(response){
-        			console.log(response);
-        			post_tbl.ajax.reload();
-        		}
-        	});
+            var status = $(evt).val();
+            var id = $(evt).data('id');
+            
+            $.ajax({
+                url: base_url+"user/editBlogStatus",
+                data: {id: id, status: status},
+                success: function(response){
+                    console.log(response);
+                    post_tbl.ajax.reload();
+                }
+            });
 
 
         }
-	</script>
-	
+        function showImage(evt){
+            imglist_tbl.ajax.url(base_url+'user/imglist_gallery?a_id='+evt).load();
+            imglist_tbl.ajax.reload();
+        }
+        function showAudio(evt){
+            console.log(evt);
+            audiolist_tbl.ajax.url(base_url+'user/audiolist_gallery?a_id='+evt).load();
+            audiolist_tbl.ajax.reload();
+        }
+        function showVideo(evt){
+            console.log(evt);
+            videolist_tbl.ajax.url(base_url+'user/videolist_gallery?a_id='+evt).load();
+            videolist_tbl.ajax.reload();
+        }
+    </script>
+    <script>
+        
+
+    </script>
+    
 </body>
 </html>

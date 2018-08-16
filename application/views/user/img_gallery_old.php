@@ -15,35 +15,7 @@
 <section class="content">
     <div class="row">
         <div class="col-12">
-            <h4>Image gallery</h4>
-            <select name="album_id" id="album_id" class="form-control" onchange="showImage(this.value)">
-                <option value="">Select album</option>
-                <?php 
-                 $user_data = $this->session->userdata('user_info');
-               
-                $query = $this->db->query("SELECT * FROM `album_tbl` WHERE `album_type` = 'image' and `user_id` = ".$user_data['user_id']);
-                
-                 foreach ($query->result() as $row){ ?>
-                 
-                  <option value="<?= $row->id ?>"><?= $row->album_name ?></option>
-               <?php } ?>
-                
-
-              </select>
-              
-              
-              <div class="box">
-                  <div class="box-body">
-                       <table class="table table-bordered" id="imglit_tbl">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Image List</th>
-                                </tr>
-                            </thead>
-                        </table>
-                  </div>
-              </div>
+            
             <?php
                 $tab_menu = '';
                 $tab_content = '';
@@ -53,9 +25,6 @@
                 $query = $this->db->query("SELECT * FROM `album_tbl` WHERE `album_type` = 'image' and `user_id` = ".$user_data['user_id']);
                 
                  foreach ($query->result() as $row){
-                     
-                     
-                     
                      if($i == 0){
                         
                          $tab_menu .= '<li class="nav-item"><a href="#'.$row->id.'" class="nav-link active" data-toggle="tab">'.$row->album_name.'</a></li>';
@@ -76,6 +45,17 @@
                  }
                  
                 ?>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              
+              <?php
+   echo $tab_menu;
+   ?>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <?php
+               echo $tab_content;
+               ?>
+            </div>
         </div>
     </div>
 
