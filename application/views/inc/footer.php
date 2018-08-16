@@ -318,7 +318,7 @@
         }
     }
 </script>
- <script>
+  <script>
 
             $("#file-3").fileinput({
                 showUpload: false,
@@ -331,8 +331,7 @@
                 var inputFile = $('input[name=userfile]');
                 var uploadURI = $('#form-upload').attr('action');
                 var progressBar = $('#progress-bar');
-                $('.myprogress').css('width', '0');
-                $('.msg').text('');
+                var url = "<?=base_url()?>";
                 $("form#form-upload").submit(function (event) {
                     event.preventDefault();
                     var fileToUpload = inputFile[0].files[0];
@@ -341,7 +340,6 @@
                         // provide the form data
                         // that would be sent to sever through ajax
                         var formData = new FormData($(this)[0]);
-                        $('.msg').text('Uploading in progress...');
                         // now upload the file using $.ajax
                         $.ajax({
                             url: uploadURI,
@@ -361,10 +359,34 @@
                                 }, false);
                                 return xhr;
                             },
-                            success: function (data) {
-                                if (data.result == '1') {
-                                    $('.msg').text(data.msg);
-                                    window.location.reload();
+                            success: function (obj) {
+                                console.log(obj);
+                                var html='';
+                                if (obj.result == '1') {
+                                    console.log();
+                                    $('.error').html(obj.msg);
+                                    html = '<div class="w3-container w3-card w3-white w3-round w3-margin" id="msg_body"><br><img src="<?=base_url()?>'+obj.user_img+'" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">'+
+                                    '<span class="w3-right w3-opacity"></span>'+
+                                    '<h4>'+obj.user_name+'</h4>'+
+                                  
+                                    '<p>Just Now</p>'+
+                    
+                                    '<hr class="w3-clear">'+
+                                    '<div class="w3-row-padding" style="margin:0 -16px">'+
+                                            '<div class="w3-half">'+
+                                                '<img src="'+url+'uploads/'+obj.msg+'"/>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> &nbsp;Like</button>'+
+                                        '<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>'+
+                                '</div>';
+                                $("#parents_div .new_div").prepend(html);
+                
+                                $('#form-upload')[0].reset();
+                                    
+                                }else{
+                                    $('.msg').text('');
+                                    $('.error').html(obj.msg);
                                 }
                             }
                         });
@@ -376,6 +398,101 @@
                 //     progressBar.css({width: "0%"});
                 // });
             });
+            $("#form_1").on('submit',function(){
+                var form_data = new FormData();    
+                $.each($(this).serializeArray(), function(i, field) {
+                    
+                    
+                    form_data.append(field.name, field.value);
+                    
+                    
+                });
+                
+                
+           //form_data.append('description',tinyMCE.activeEditor.getContent({format : 'raw'}));;
+           ajax_post('welcome/update_post',form_data,"#form_1");
+           
+           return false;   
+        });  
+        function ajax_post(url,frm,id){
+            console.log(frm);
+            var request = $.ajax({
+                url: "<?=base_url();?>"+url,
+                method: "post",
+                data: frm,
+                processData: false,
+                contentType: false,
+                beforeSend:function(){
+                    $("#submit").html('<img src="<?=base_url();?>assets/img/ajax-loader.gif" style="width:18px;height:18px;" />');
+                    
+                }
+            });
+            request.done(function( response ) {
+                var obj=jQuery.parseJSON(response);
+                var html='';
+                console.log(obj);
+                
+                if(obj.rs==1){
+                    html = '<div class="w3-container w3-card w3-white w3-round w3-margin" id="msg_body"><br><img src="<?=base_url()?>'+obj.user_img+'" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">'+
+                    '<span class="w3-right w3-opacity"></span>'+
+                    '<h4>'+obj.user_name+'</h4>'+
+                  
+                    '<p>Just Now</p>'+
+    
+                    '<hr class="w3-clear">'+
+                    '<div class="w3-row-padding" style="margin:0 -16px">'+
+                            '<div class="w3-half">'+
+                                '<p>'+obj.msg+'</p>'+
+                            '</div>'+
+                        '</div>'+
+                        '<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> &nbsp;Like</button>'+
+                        '<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>'+
+                '</div>';
+                }
+                $("#parents_div .new_div").prepend(html);
+                
+                $('#form_1')[0].reset();
+                $("#submit").html('Submit');
+                setTimeout(function(){
+                  window.location.href = window.location.href;
+              },10000);
+        });
+            
+            request.fail(function( jqXHR, textStatus ) {
+                alert( "Request failed: " + textStatus );
+            }); 
+        }
+        
+        function addLikes(id,action,u_id) {
+            
+            $.ajax({
+            url: "<?=base_url()?>welcome/add_likes",
+            data:'id='+id+'&action='+action+'&user_id='+u_id,
+            type: "POST",
+            beforeSend: function(){
+                $('#post_id_'+id+' .btn_likes').html("<img src='<?=base_url('assets/img/loaderIcon.gif')?>' />");
+            },
+            success: function(data){
+            var likes = parseInt($('#likes-'+id).val());
+            switch(action) {
+                case "like":
+                    $('#post_id_'+id+' .btn_likes').html('<button type="button" title="Unlike" class="w3-button w3-theme-d1 w3-margin-bottom" onClick="addLikes('+id+',\'unlike\','+u_id+')"><i class="fa fa-thumbs-o-down"></i> &nbsp;Unlike</button>');
+                likes = likes+1;
+                break;
+                case "unlike":
+                    $('#post_id_'+id+' .btn_likes').html('<button type="button" title="Like" class="w3-button w3-theme-d1 w3-margin-bottom"  onClick="addLikes('+id+',\'like\','+u_id+')"><i class="fa fa-thumbs-o-up"></i> &nbsp;Like</button>');
+                likes = likes-1;
+                break;
+            }
+            $('#likes-'+id).val(likes);
+            if(likes>0) {
+                $('#post_id_'+id+' .label-likes').html(likes+" Like(s)");
+            } else {
+                $('#post_id_'+id+' .label-likes').html('');
+            }
+            }
+            });
+        }
 
         </script>
 </body>

@@ -51,9 +51,129 @@ class Welcome extends CI_Controller {
     }
     public function wall()
     {
-        $data['upload_data'] = $this->blog_model->get_all_img();
+        $user_data = $this->session->userdata('user_info');
+        // $data['upload_data'] = $this->blog_model->get_all_img();
+        $data['logged_in'] = $user_data['is_login'];
+        $data['user_info'] = $this->reg_model->get_all_user_info($user_data['user_id']);
         $this->load->view('wall', $data);
     }
+    public function update_post(){
+        
+        $desc = $this->input->post('desc');
+        $type = $this->input->post('update_status');
+        $user_id = $this->input->post('user_id');
+        $data = array();
+        $data_save = array('post_desc'=>$desc,'user_post_type'=> $type, 'user_id' => $user_id);
+        
+        // $this->db->set('created_time', 'NOW() + INTERVAL 24 HOUR', FALSE);
+        // $this->db->set('created_time', 'NOW()', FALSE);
+        $sql = $this->db->insert('wall_post', $data_save);
+        
+        if($sql){
+            $this->db->where('id', $user_id);
+            $query = $this->db->get('users');
+            if($query->num_rows() == 1){
+                $data['rs'] = 1;
+                $data['msg'] = $desc;
+                $data['user_name'] = $query->row()->first_name;
+                $data['user_img'] = $query->row()->profile_image;
+              //  header('Content-Type: application/json');
+                
+                echo json_encode($data);
+                return;
+            }
+            
+        }
+        else{
+            echo json_encode(array('rs'=>0));
+            return;
+        }
+            
+    }
+    public function upload_photo() {
+        $upload_data = array(
+            'upload_path' => dirname($_SERVER["SCRIPT_FILENAME"]) . "/uploads",
+            'upload_url' => base_url() . "./uploads/",
+            'allowed_types' => "gif|jpg|png|jpeg",
+            'overwrite' => TRUE,
+            'max_size' => "1024*2",
+            'width' => 1900,
+            'height' => 1080,
+            'quality' => "100%",
+            'file_name' => rand(1, 1000000) . microtime(true) . '.jpg'
+        );
+
+
+
+        $file_name = null;
+
+        $this->load->library('upload', $upload_data);
+
+        if ($this->upload->do_upload('userfile')) {
+
+            $uploaded_file = $this->upload->data();
+
+            $file_name = $uploaded_file['file_name'];
+            $type = $this->input->post('update_status');
+            $user_id = $this->input->post('user_id');
+            $data = array(
+                'user_id' => $this->input->post('user_id'),
+                'post_img' => base_url() . 'uploads/' . $file_name,
+                'user_post_type' => $type
+                
+            );
+            $sql = $this->db->insert('wall_post', $data);
+            if($sql){
+                $this->db->where('id', $user_id);
+                $query = $this->db->get('users');
+                if($query->num_rows() == 1){
+                    $data['result'] = 1;
+                    $data['msg'] = $file_name;
+                    $data['user_name'] = $query->row()->first_name;
+                    $data['user_img'] = $query->row()->profile_image;
+                  //  header('Content-Type: application/json');
+                    $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($data));
+                }
+                
+            }
+            
+            
+
+        }else{
+            $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode(array('result' => 0, 'msg' => $this->upload->display_errors())));
+        }
+    }
+    public function add_likes(){
+        if(!empty($_POST["id"])) {
+            switch($_POST["action"]){
+                case "like":
+                    
+                    $data = array('post_id' => $_POST['id'], 'user_id' => $_POST['user_id']);
+                    $result = $this->db->insert('like_tbl', $data);
+                    if(!empty($result)) {
+                         
+                        $query_statement ="UPDATE wall_post SET likes = likes + 1 WHERE id='" . $_POST["id"] . "'";
+                        $result = $this->db->query($query_statement);               
+                    }           
+                break;      
+                case "unlike":
+                    $query = "DELETE FROM like_tbl WHERE user_id = '" . $_POST['user_id'] . "' and post_id = '" . $_POST["id"] . "'";
+                    
+                    $result = $this->db->query($query); 
+                    if(!empty($result)) {
+                        
+                        $query_statement ="UPDATE wall_post SET likes = likes - 1 WHERE id='" . $_POST["id"] . "'and likes > 0";
+                        $result = $this->db->query($query_statement);   
+                    }
+                break;      
+            }
+        }
+    }
+
 
     public function blog($offset = 0)
     {
@@ -491,7 +611,7 @@ class Welcome extends CI_Controller {
          exit();
     }
     
-    public function upload_photo() {
+    public function upload_photos() {
         $upload_data = array(
             'upload_path' => dirname($_SERVER["SCRIPT_FILENAME"]) . "/uploads",
             'upload_url' => base_url() . "./uploads/",

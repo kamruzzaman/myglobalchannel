@@ -81,3 +81,110 @@ function get_user_email($id){
         	return FALSE;
         }
 }
+function get_profile_img($uid){
+    $CI =& get_instance();
+    $CI->db->select('profile_image');   
+    $CI->db->where('id', $uid);
+       
+    $sql = $CI->db->get('users');
+    if($sql->num_rows() == 1){
+            return $sql->row_array();
+        }else{
+            return FALSE;
+        }
+}
+function get_user_info($uid){
+    $CI =& get_instance();
+    $CI->db->select('first_name, profile_image');   
+    $CI->db->where('id', $uid);
+       
+    $sql = $CI->db->get('users');
+    if($sql->num_rows() == 1){
+            return $sql->row_array();
+        }else{
+            return FALSE;
+        }
+}
+function get_all_category(){
+    $CI =& get_instance();
+    $CI->db->select("*");
+    $CI->db->from('category_tbl'); 
+   $query=$CI->db->get();
+   $result = $query->result_array();
+   return $result;
+}
+function get_all_usrpost($uid){
+    $CI =& get_instance();
+    $CI->db->select("*");
+    $CI->db->from('wall_post'); 
+    $CI->db->where('user_id', $uid);
+    $CI->db->order_by("id", " DESC");
+   $query=$CI->db->get();
+   $result = $query->result_array();
+   return $result;
+}
+function get_image_album($uid){
+    $CI =& get_instance();
+    $CI->db->select("*");
+    $CI->db->from('album_tbl'); 
+    $CI->db->where('album_type', 'image');
+    $CI->db->where('user_id', $uid);
+    $CI->db->order_by("id", "asc");
+   $query=$CI->db->get();
+   $result = $query->result_array();
+   return $result;
+        
+}
+function get_audio_album($uid){
+    $CI =& get_instance();
+    $CI->db->select("*");
+    $CI->db->from('album_tbl'); 
+    $CI->db->where('album_type', 'audio');
+    $CI->db->where('user_id', $uid);
+    $CI->db->order_by("id", "asc");
+   $query=$CI->db->get();
+   $result = $query->result_array();
+   return $result;
+}
+function get_video_album($uid){
+    $CI =& get_instance();
+    $CI->db->select("*");
+    $CI->db->from('album_tbl'); 
+    $CI->db->where('album_type', 'video');
+    $CI->db->where('user_id', $uid);
+    $CI->db->order_by("id", "asc");
+   $query=$CI->db->get();
+   $result = $query->result_array();
+   return $result;
+}
+function calculate_time_span($date){
+
+    // $seconds  = strtotime(date('Y-m-d H:i:s')) - strtotime($date);
+    $seconds = abs(strtotime($date) - strtotime(date("Y-m-d h:i:s"))); 
+  
+    //1534071989
+    //1534060863
+    //1534146574
+    // $years = floor($diff / (365*60*60*24));
+    // $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+    
+    $months = floor($seconds / (3600*24*30));
+    $day = floor($seconds / (3600*24));
+    $hours = floor($seconds / 3600);
+    
+    $mins = floor(($seconds - ($hours*3600)) / 60);
+     if($seconds < 60*60){
+            $time = $mins." min ago";
+        }else if($seconds < 24*60*60){
+            $time = $hours." hours ago";
+        }else if($seconds < 24*60*60*30){
+            $time = $day." day ago";
+        }else{
+            $time = $months." month ago";
+        }
+
+        return $time;
+}
+function get_total_likes($post_id){
+    return ;
+}
