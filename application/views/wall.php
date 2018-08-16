@@ -289,15 +289,14 @@
                  $type = -1;
                  foreach($data as $usr_post){
                      $users = get_user_info($usr_post['user_id']);
-                    //  print_r($usr_post['created_time']);
-                     //2018-08-12 08:00:47 Y-m-d h:i:s
-                    //  $the_date = mdate('%Y-%m-%Y %H:%i:%s', strtotime($usr_post['created_time']));
-                    //  print_r($the_date);
+                   
                      $time_val = calculate_time_span($usr_post['created_time']);
-                    $total_likes = get_total_likes($usr_post['id']); 
+                     $post_id = $usr_post['id'];
+                    
+                    
                     
                  ?>
-                     <div class="w3-container w3-card w3-white w3-round w3-margin" id="post_id_<?= $usr_post['id']?>"><br>
+                     <div class="w3-container w3-card w3-white w3-round w3-margin" id="post_id_<?= $usr_post['id']?>" ><br>
                         <img src="<?=base_url($users['profile_image'])?>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         
                         <span class="w3-right w3-opacity"><?= $time_val ?></span>
@@ -336,7 +335,30 @@
                                 <button type="button" title="<?php echo ucwords($str_like); ?>" class="w3-button w3-theme-d1 w3-margin-bottom " onClick="addLikes(<?php echo $usr_post["id"]; ?>,'<?php echo $str_like; ?>',<?= $usr_post['user_id'] ?>)"><i class="fa <?=$icon_class?>"></i> &nbsp;<?php echo $str_like; ?></button>
                         
                             </div>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comment</button>
+                            <a class="link_btn w3-button w3-theme-d2 w3-margin-bottom" href="javascript:;"><i class="fa fa-comment"></i> &nbsp;Comment</a>
+                          <?php  $comments = $this->db->query("SELECT c.*,u.first_name as username from comment_tbl c left join users u on u.id = c.user_id where c.post_id = '$post_id' order by c.comment_id desc");
+                            
+                            ?>
+                             <?php if($comments){ ?>
+                                <div class="comment_div">
+                                    <?php foreach ($comments->result() as $row){ ?>
+                                    <div class="clear"></div>
+                                    <div class="comment_ele">
+                                        <p><a class="link_btn" href="javascript:;"><?php echo $row->username; ?></a></p>
+                                        <p><?php echo $row->comment; ?></p>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                            <div class="clear"></div>
+                            <p>
+                                <form id="commentform_<?php echo $usr_post['id']; ?>" method="post">
+                                    <input type="hidden" name="action" value="comment"/>
+                                    <input type="hidden" name="post_id" value="<?php echo $usr_post['id']; ?>"/>
+                                    <input class="input comment_input" type="text" name="comment" id="comment_<?php echo $usr_post['id']; ?>" placeholder="your comment"/>
+                                    <input class="submitbtn btn" postid="<?php echo $usr_post['id']; ?>" type="button" name="sendbtn" value=">"/>
+                                </form>
+                            </p>
                     </div>
                <?  }
                 ?>

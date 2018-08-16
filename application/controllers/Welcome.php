@@ -482,6 +482,26 @@ class Welcome extends CI_Controller {
           }
 
     }
+    public function comment_add(){
+        $user_data = $this->session->userdata('user_info');
+        $uid = $user_data['user_id'];
+        $post_id = $this->input->post('post_id');
+        $comment = $this->input->post('comment');
+        $data = array('comment' => $comment, 'post_id' => $post_id, 'user_id' => $uid);
+        $result = $this->db->insert('comment_tbl', $data);
+     
+        if($result){
+            $Return = array();
+            $Return['ResponseCode'] = 200;
+            $Return['Message'] = "comment submitted successfully.";
+        }else{
+            $Return = array();
+            $Return['ResponseCode'] = 511;
+            $Return['Message'] = "Error : Please try again!";
+        }
+     
+        echo json_encode($Return);
+    }
     public function passwordReset(){
         $validator['success'] = 0;
 		$validator['messages'] = '';

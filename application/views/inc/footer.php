@@ -141,6 +141,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	<script src="<?= base_url()?>assets/js/moment.js"></script>
 <script src="<?=base_url()?>assets/js/jquery-3.3.1.js" ></script>
 <script src="<?= base_url()?>vendor/fullcalendar/fullcalendar.min.js"></script>
@@ -148,6 +149,7 @@
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/fileinput.js"></script>
 <script src="<?=base_url()?>assets/js/script.js" ></script>
 <script src="<?=base_url()?>assets/js/main.js"></script>
+
  <!-- fullCalendar -->
 
 	
@@ -494,6 +496,33 @@
             });
         }
 
+        </script>
+        <script>
+            $(document).ready(function(){
+                $(".submitbtn").on("click",function(){
+                var post_id = $(this).attr('postid');
+                var comment = $("#comment_"+post_id).val();
+                if(comment == ''){
+                    alert("comment can't be empty!");
+                    return false;
+                }else{
+                    $.ajax({
+                        type: "POST",
+                        data: $('#commentform_'+post_id).serialize(),
+                        url: '<?=base_url()?>welcome/comment_add',
+                        dataType: 'json',
+                        success: function(response) {
+                            if(response.ResponseCode == 200){
+                                $( "#result" ).load( "ajax/test.html #container" );
+                                $('#post_id_'+post_id).load('<?=base_url()?>welcome/wall #post_id_'+post_id);
+                            }else{
+                                alert(response.Message);
+                            }
+                        }
+                    });
+                }
+            });
+            })
         </script>
 </body>
 </html>
