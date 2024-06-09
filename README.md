@@ -1,47 +1,34 @@
-http://myglobalchannel.com/
-MyGlobalChannel (MGC), founded in 2012 and reorganized in 2018, organizes individuals and microbusiness owners into organic clusters of no- and low-cost business websites. The development of low-cost sites was not aimed at economic advantage but at the freedom, functionality, and placeholders for future design.
+MyGlobalChannel (MGC)
 
-MGC’s mission distributes value-added business websites.
 
-MGC’s vision is to be the largest distributor of websites in the world.
+About Us:
+MyGlobalChannel (MGC), established in 2012 and restructured in 2018, is dedicated to empowering individuals and microbusiness owners by organizing them into cohesive clusters with access to cost-effective business websites. Our primary objective in developing these low-cost sites is not merely economic advantage, but to provide freedom, functionality, and a foundation for future enhancements.
 
-Freedom
-MGC believes in provision of tools that support basic rights to information. The belief is that all governments are social and must provide supports for basic human rights. This is not declaring anything other than the basic rights of survival in a technical world. No government, institution, or culture has the inherent right to prohibit these human rights.
+Mission:
+MGC aims to distribute value-added business websites to enhance the digital presence of small enterprises globally.
 
-Right to Privacy; Expectancy of Safety
+Vision:
+MGC aspires to become the world's largest distributor of business websites.
 
-Right to Self-Preserve, Self-Promote and Share information
+Core Beliefs:
+MGC is committed to providing tools that uphold basic rights to information, emphasizing that governments and social institutions must support fundamental human rights. Our stance encompasses:
 
-Right to Equal Benefit
+Right to Privacy and Safety: Ensuring users' privacy and security.
+Right to Self-Preservation, Self-Promotion, and Information Sharing: Enabling individuals to sustain, promote themselves, and share information freely.
+Right to Equal Benefit:
+Earn equally from the promotion of information or applications.
+Gain benefits from what is used, liked, and shared.
+Contribute and earn equally, irrespective of geography or demographics.
+Responsibility to comply with local laws, customs, and cultural diversity without slander or malice.
+Responsibility to accurately report sources unless privacy concerns dictate otherwise.
+Permanent earning potential as a site co-pilot.
+Features and Functionality:
+MGC provides essential tools tailored for small businesses, ensuring comprehensive functionality:
 
-Earn equally from promoting information or applications what is:
-
-used/developed
-
-liked (telling others what and why you like something)
-
-sharedt
-
-Earn equal as others from contributions
-
-Regardless of geography – Responsibility to laws and local customs/culture
-
-Regardless of demographics – Responsibility to diversity without slander or malice
-
-Regardless of time – Responsibility to accurately report sources (unless private) Earn permanently as a co-pilot of the site
-
-Features & Function
-MGC provides tools that every small business needs (features that provide function):
-
-Tell stories, provide notice, advertise, and explain how and when to find them
-
-Show and explain products and services
-
-Ability to transact business
-
-Future
-Shared Benefit from developing Micro-Business and Individual Features
-
-Innovative designs that may be implemented a la carte for a custom look.
-
-A virtual private space for the prosperity of a trade alliance: a created collection of businesses and individuals
+Communication: Narrate stories, provide notifications, advertise, and inform about availability.
+Product and Service Display: Showcase and explain offerings.
+Business Transactions: Facilitate commercial transactions seamlessly.
+Innovative Designs: Implement customizable, a la carte design options for a unique look.
+Future Shared Benefits: Foster development of micro-business and individual features.
+Virtual Private Space: Create a secure, collaborative environment for trade alliances and collective prosperity.
+MGC is committed to supporting the digital growth of small businesses by providing affordable, functional, and customizable website solutions, ensuring every small business can thrive in the digital age.
